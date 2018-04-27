@@ -2,6 +2,31 @@
 <body>
 <h2>Hello World!</h2>
 <br><br>
+<a href="/springmvc/testMap">testMap</a>
+<br><br>
+<a href="/springmvc/testModelAndView">testModelAndView</a>
+<br><br>
+<a href="/springmvc/testServletAPI">testServletAPI</a>
+<br><br>
+<form  action="/springmvc/testPOJO" method="post">
+username:<input type="text" name="username"/>
+    <br>
+password:<input type="text" name="password"/>
+    <br>
+    email:<input type="text" name="email">
+    <br>
+    age:<input type="text" name="age">
+    <br>
+    city:<input type="text" name="address.city">
+    <br>
+    province:<input type="text" name="address.province">
+    <br>
+    <input type="submit" value="submit">
+</form>
+<br><br>
+<a href="springmvc/testRequestParam?useranme=fansen&age=24"> testRequestParam</a>
+
+<br><br>
 
 
 <form action="/springmvc/testRest" method="post">

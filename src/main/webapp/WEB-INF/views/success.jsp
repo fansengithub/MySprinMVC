@@ -13,6 +13,8 @@
 <body>
 
 <h4>success page</h4>
-
+time:${requestScope.time}
+<br><br>
+name:${requestScope.names}
 </body>
 </html>

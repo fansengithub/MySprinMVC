@@ -1,15 +1,106 @@
 package com.fan.springMVC.handler;
 
+import com.fan.springMVC.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Map;
 
 @RequestMapping("/springmvc")
 @Controller
 public class SpringMVCTest {
 
     private  static  final String SUCCESS = "success";
+
+    /**
+     *  目标方法可以添加map类型（实际上也可以是model 或者model map类型），
+     * @param map
+     * @return
+     */
+    @RequestMapping("/testMap")
+    public  String testMap(Map<String,Object> map){
+        System.out.println(map.getClass().getName());
+        map.put("names", Arrays.asList("12","dfs","ee"));
+        return  SUCCESS;
+    }
+
+    /**
+     * 目标方法的返回值可以是modelandview 类型。
+     * 其中可以包含视图和模型信息。
+     * springMVC会把ModelAndView的model放入request对象中。
+     * @return
+     */
+    @RequestMapping("/testModelAndView")
+    public ModelAndView testModelAndView(){
+        String vieName = SUCCESS;
+        ModelAndView modelAndView =new ModelAndView(vieName);
+
+//        添加模型数据到ModelAndView中
+        modelAndView.addObject("time",new Date());
+        return  modelAndView;
+    }
+
+    /**
+     *    可以使用servelt原生的api作为目标方法的参数！
+     * @param request
+     * @param response
+     * @param out
+     * @throws IOException
+     */
+    @RequestMapping("/testServletAPI")
+    public  void  testServletAPI(HttpServletRequest request,
+                                 HttpServletResponse response,
+                                 Writer out)throws IOException {
+
+        System.out.println(" testServletAPI "+request+" --"+response);
+        out.write("hello MVC!");
+    }
+
+    /**
+     * springMVC会按照请求参数名和pojo属性名进行自动匹配，
+     * 自动为对象填充属性值，支持级联属性。
+     * @param user
+     * @return
+     */
+    @RequestMapping("/testPOJO")
+    public  String testPojo(User user){
+
+        System.out.println("testPojo:"+user);
+        return  SUCCESS;
+    }
+
+    /**
+     *   RequestParam  用来映射请求参数，
+     *   value值为请求参数名，
+     *   required  该参数是否必须，默认为true
+     *   defaulrvalue  为默认值
+     * @param un
+     * @param age
+     * @return
+     */
+    @RequestMapping(value = "testRequestParam")
+    public String testRequestParam(@RequestParam(value = "useranme") String un,
+                                   @RequestParam(value = "age",required = false) Integer age){
+
+        System.out.println("testRequestParam,useranme:"+un+",age="+age);
+        return  SUCCESS;
+    }
+
+    @RequestMapping(value = "/testRest/{id}", method = RequestMethod.PUT)
+    public String testRestPut1(@PathVariable Integer id) {
+        System.out.println("testRest Put: " + id);
+        return SUCCESS;
+    }
 
     /**
      * rest风格的 url
