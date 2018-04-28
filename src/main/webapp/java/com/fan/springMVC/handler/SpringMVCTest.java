@@ -2,10 +2,7 @@ package com.fan.springMVC.handler;
 
 import com.fan.springMVC.entity.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,11 +13,36 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
+//@SessionAttributes(value = {"user"},types = {String.class})
 @RequestMapping("/springmvc")
 @Controller
 public class SpringMVCTest {
 
     private  static  final String SUCCESS = "success";
+
+    @RequestMapping("/testModelAttribute")
+    public String testModelAttribute(User user){
+        System.out.println("edit:"+user);
+        return SUCCESS;
+    }
+
+    /**
+     *
+     * SessionAttributes 可以通过属性名指定放到会话中的属性《使用value属性值》
+     * 还可以通过模型属性的对象类型指定哪些模型属性放到会话中《使用type属性值》
+     *
+     * 只能放在类上。
+     * @param map
+     * @return
+     */
+    @RequestMapping("/testSessionAttributes")
+    public String testSessionAttributes(Map<String,Object> map){
+
+        User user =new User("tom","123","wwww","24");
+        map.put("user",user);
+        map.put("scool","3wwwc");
+        return  SUCCESS;
+    }
 
     /**
      *  目标方法可以添加map类型（实际上也可以是model 或者model map类型），

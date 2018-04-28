@@ -1,6 +1,16 @@
 package com.fan.springMVC.entity;
 
 public class User {
+    Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     String username;
     String password;
     String email;
@@ -50,11 +60,41 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", age='" + age + '\'' +
-                ", address=" + address +
                 '}';
+    }
+
+    //    @Override
+//    public String toString() {
+//        return "User{" +
+//                "username='" + username + '\'' +
+//                ", password='" + password + '\'' +
+//                ", email='" + email + '\'' +
+//                ", age='" + age + '\'' +
+//                ", address=" + address +
+//                '}';
+//    }
+
+
+    public User(Integer id, String username, String password, String email, String age) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.age = age;
+    }
+
+    public User(String username, String password, String email, String age) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.age = age;
+    }
+
+    public User() {
     }
 }

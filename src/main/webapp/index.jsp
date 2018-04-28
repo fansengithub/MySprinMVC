@@ -2,6 +2,27 @@
 <body>
 <h2>Hello World!</h2>
 <br><br>
+
+
+<%--
+    模拟修改操作：
+    1，原始数据：1 tom 123456 aa 24
+    2, 密码不能被修改
+    3，表单回显，模拟操作直接在表单填写对应属性值.
+--%>
+<form action="/springmvc/testModelAttribute" method="post">
+    <input type="hidden" name="id" value="1"/>
+    username:<input type="text" name="username" value="tom"/>
+    <br>
+    email:<input type="text" name="email" value="123456"/>
+    <br>
+    age:<input type="text" name="age" value="23"/>
+    <br>
+    <input type="submit" value="Submit"/>
+</form>
+<br><br>
+<a href="/springmvc/testSessionAttributes">testSessionAttributes</a>
+<br><br>
 <a href="/springmvc/testMap">testMap</a>
 <br><br>
 <a href="/springmvc/testModelAndView">testModelAndView</a>
