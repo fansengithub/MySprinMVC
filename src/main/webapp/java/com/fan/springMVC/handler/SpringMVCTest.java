@@ -22,6 +22,7 @@ public class SpringMVCTest {
 
     @RequestMapping("/testModelAttribute")
     public String testModelAttribute(User user){
+
         System.out.println("edit:"+user);
         return SUCCESS;
     }
