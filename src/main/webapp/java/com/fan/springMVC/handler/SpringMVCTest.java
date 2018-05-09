@@ -20,6 +20,21 @@ public class SpringMVCTest {
 
     private  static  final String SUCCESS = "success";
 
+    @RequestMapping("testRedirect")
+    public  String testRedirect(){
+        System.out.println("testRedirect");
+        return "redirect:/index.jsp";
+    }
+
+//    经过测试 404
+    @RequestMapping("testView")
+    public String testView(){
+        System.out.println("testView!");
+
+        System.out.println("www");
+        return "helloView";
+    }
+
     @RequestMapping("/testModelAttribute")
     public String testModelAttribute(User user){
 

@@ -3,6 +3,11 @@
 <h2>Hello World!</h2>
 <br><br>
 
+<a href="/springmvc/testRedirect">testRedirect</a>
+<br><br>
+
+<a href="/springmvc/testView">test View</a>
+<br><br>
 
 <%--
     模拟修改操作：
